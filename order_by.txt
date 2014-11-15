@@ -1,0 +1,16 @@
+
+-- MySQL Sorting varchar field with mixed content
+
+-- MySQL "ORDER BY" varchar column  with numbers and characters:
+
+
+SELECT
+*
+FROM
+your_table
+ORDER BY
+IF(your_field REGEXP '^[A-Z]',
+    CONCAT(  LEFT(your_field, 1), LPAD(SUBSTRING(your_field, 2), 20, '0')      )
+       , CONCAT( '@',  LPAD(your_field, 20, '0'))
+       )
+;
